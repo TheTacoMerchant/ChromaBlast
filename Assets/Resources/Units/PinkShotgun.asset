@@ -1,0 +1,16 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fed65c9c0c556b24b9ffc40843ee8109, type: 3}
+  m_Name: PinkShotgun
+  m_EditorClassIdentifier: 
+  faction: 1
+  unitPrefab: {fileID: 5804626204475710486, guid: 5281bf0a48314408ba344f61859b644f, type: 3}

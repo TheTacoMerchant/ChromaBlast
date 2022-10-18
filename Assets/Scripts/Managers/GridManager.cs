@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using System;
+using System.Linq;
 
 public class GridManager : MonoBehaviour
 {
@@ -23,6 +24,9 @@ public class GridManager : MonoBehaviour
         int[] widths = new int[height];
         double[] startX = new double[height];
 
+        Vector2[] pinkHome = { new Vector2(0, 0), new Vector2(0, 1), new Vector2(1, 0), new Vector2(1, 1) };
+        Vector2[] blueHome = { new Vector2(3, 2), new Vector2(3, 3), new Vector2(4, 1), new Vector2(4, 2) };
+
         for (int i = 0; i < depth; i++)
         {
             widths[i] = depth + i;
@@ -42,7 +46,15 @@ public class GridManager : MonoBehaviour
             {
                 var spawnedTile = Instantiate(tilePrefab, new Vector3((float)startX[i] + j, -(float)Math.Sqrt(3) * i/2), Quaternion.identity);
                 spawnedTile.name = $"Tile {i} {j}";
-                spawnedTile.Init(0);
+                if(pinkHome.Contains(new Vector2(i, j))){
+                    spawnedTile.Init(2);
+                } else if (blueHome.Contains(new Vector2(i, j))){
+                    spawnedTile.Init(1);
+                } else
+                {
+                    spawnedTile.Init(0);
+                }
+                
                 tileArray.Add(new Vector2(i, j), spawnedTile);
             }
         }

@@ -99,8 +99,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0a1ef95529055f841963d7e812eb0e2c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  homeBlue: {r: 0, g: 0, b: 0, a: 0}
-  homePink: {r: 0, g: 0, b: 0, a: 0}
+  homeBlue: {r: 0.07409222, g: 0.318505, b: 0.3490566, a: 1}
+  homePink: {r: 0.6603774, g: 0, b: 0.5075122, a: 1}
   blue: {r: 0.19215687, g: 0.88235295, b: 0.96862745, a: 1}
   pink: {r: 0.84705883, g: 0, b: 0.6509804, a: 1}
   grey: {r: 0.6226415, g: 0.6226415, b: 0.6226415, a: 1}

@@ -48,7 +48,7 @@ public class Tile : MonoBehaviour
 
         if (OccupiedUnit != null)
         {
-            if (OccupiedUnit.CanBeSelected()) UnitManager.Instance.SetSelectedUnit(OccupiedUnit);
+            if (OccupiedUnit.CanBeSelected() && !TurnManager.Instance.hasMovedThisTurn) UnitManager.Instance.SetSelectedUnit(OccupiedUnit); //If its my turn and I select another one of my own pieces, select the new piece.
             else
             {
                 if (UnitManager.Instance.SelectedHero != null)
@@ -65,6 +65,7 @@ public class Tile : MonoBehaviour
             {
                 SetUnit(UnitManager.Instance.SelectedHero);
                 UnitManager.Instance.SetSelectedUnit(null);
+                TurnManager.Instance.hasMovedThisTurn = true;
             }
         }
 
