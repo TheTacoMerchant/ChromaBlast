@@ -187,7 +187,7 @@ public class CombatManager : MonoBehaviour
     }
 
     public void panCamera(float x, float y){
-        camera.transform.position = new Vector3(x,y,10f);
+        camera.transform.position = new Vector3(x,y,-10f);
     }
 
     public void SwitchStates(){
