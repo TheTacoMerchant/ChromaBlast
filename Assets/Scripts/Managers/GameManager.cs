@@ -42,6 +42,7 @@ public class GameManager : MonoBehaviour
             case GameState.BattleModePink:
                 break;
             case GameState.CombatMode:
+                CombatManager.Instance.Combat(state, "Rifleman", "Rifleman");
                 break;
             case GameState.EndGame:
                 break;
