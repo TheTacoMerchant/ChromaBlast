@@ -34,7 +34,7 @@ public class CombatManager : MonoBehaviour
     public GameObject PinkShotgun;
     public GameObject PinkSniper;
 
-    public CombatCam camera;
+    public Camera camera;
 
     private int mapNumber;
 
@@ -72,7 +72,7 @@ public class CombatManager : MonoBehaviour
                 GameObject pinkSniper = Instantiate(PinkSniper, PinkSpawn1.position, PinkSpawn1.rotation);
             }
 
-            camera.panCamera(Map1.transform.position.x, Map1.transform.position.y);
+            panCamera(Map1.transform.position.x, Map1.transform.position.y);
         }
         else if(mapNumber == 2){
             if(bluePlayer == "Rifleman"){
@@ -94,7 +94,7 @@ public class CombatManager : MonoBehaviour
             else{
                 GameObject pinkSniper = Instantiate(PinkSniper, PinkSpawn2.position, PinkSpawn2.rotation);
             }
-            camera.panCamera(Map2.transform.position.x, Map2.transform.position.y);
+            panCamera(Map2.transform.position.x, Map2.transform.position.y);
         }
         else if(mapNumber == 3){
             if(bluePlayer == "Rifleman"){
@@ -116,7 +116,7 @@ public class CombatManager : MonoBehaviour
             else{
                 GameObject pinkSniper = Instantiate(PinkSniper, PinkSpawn3.position, PinkSpawn3.rotation);
             }
-            camera.panCamera(Map3.transform.position.x, Map3.transform.position.y);
+            panCamera(Map3.transform.position.x, Map3.transform.position.y);
         }
         else if(mapNumber == 4){
             if(bluePlayer == "Rifleman"){
@@ -138,7 +138,7 @@ public class CombatManager : MonoBehaviour
             else{
                 GameObject pinkSniper = Instantiate(PinkSniper, PinkSpawn4.position, PinkSpawn4.rotation);
             }
-            camera.panCamera(Map4.transform.position.x, Map4.transform.position.y);
+            panCamera(Map4.transform.position.x, Map4.transform.position.y);
         }
         else if(mapNumber == 5){
             if(bluePlayer == "Rifleman"){
@@ -160,7 +160,7 @@ public class CombatManager : MonoBehaviour
             else{
                 GameObject pinkSniper = Instantiate(PinkSniper, PinkSpawn5.position, PinkSpawn5.rotation);
             }
-            camera.panCamera(Map5.transform.position.x, Map5.transform.position.y);
+            panCamera(Map5.transform.position.x, Map5.transform.position.y);
         }
         else if(mapNumber == 6){
             if(bluePlayer == "Rifleman"){
@@ -182,12 +182,16 @@ public class CombatManager : MonoBehaviour
             else{
                 GameObject pinkSniper = Instantiate(PinkSniper, PinkSpawn6.position, PinkSpawn6.rotation);
             }
-            camera.panCamera(Map6.transform.position.x, Map6.transform.position.y);
+            panCamera(Map6.transform.position.x, Map6.transform.position.y);
         }
     }
 
+    public void panCamera(float x, float y){
+        camera.transform.position = new Vector3(x,y,10f);
+    }
+
     public void SwitchStates(){
-        camera.panCamera(1f,-1.66f);
+        panCamera(1f,-1.66f);
         GameManager.Instance.ChangeState(previousState);
         GameObject[] blueUnits = GameObject.FindGameObjectsWithTag("Blue");
         GameObject[] pinkUnits = GameObject.FindGameObjectsWithTag("Pink");
