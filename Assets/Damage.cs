@@ -4,7 +4,9 @@ using UnityEngine;
 
 public class Damage : MonoBehaviour
 {
+
     public void Die (){
         Destroy(gameObject);
+        CombatManager.Instance.SwitchStates();
     }
 }
