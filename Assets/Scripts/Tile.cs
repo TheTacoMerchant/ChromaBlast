@@ -5,8 +5,8 @@ using UnityEngine;
 
 public class Tile : MonoBehaviour
 {
-    [SerializeField] private Color homeBlue, homePink, blue, pink, grey;
-    [SerializeField] private SpriteRenderer spriteRenderer;
+    [SerializeField] public Color homeBlue, homePink, blue, pink, grey;
+    [SerializeField] public SpriteRenderer spriteRenderer;
     [SerializeField] private GameObject highlight;
 
     public BaseUnit OccupiedUnit;
@@ -54,8 +54,10 @@ public class Tile : MonoBehaviour
             {
                 if (UnitManager.Instance.SelectedHero != null && UnitMayMove(UnitManager.Instance.SelectedHero, UnitManager.Instance.SelectedHero.OccupiedTile, this))
                 {
+                    // Enter combat
                     var enemy = (BaseUnit)OccupiedUnit;
-                    GameManager.Instance.ChangeState(GameState.CombatMode);
+                    CombatManager.Instance.battleunits = new List<BaseUnit>{UnitManager.Instance.SelectedHero, enemy};
+                    GameManager.Instance.ChangeState(GameState.CombatMode, this);
                     UnitManager.Instance.SetSelectedUnit(null);
                 }
             }
