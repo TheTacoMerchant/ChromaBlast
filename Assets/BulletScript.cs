@@ -26,7 +26,7 @@ public class BulletScript : MonoBehaviour
 
     void OnTriggerEnter2D (Collider2D hitInformation){
         Damage pr;
-        if(hitInformation.tag == "Player"){
+        if(hitInformation.tag == "Blue" || hitInformation.tag == "Pink"){
             pr = hitInformation.GetComponent<Damage>();
         }
         else{
@@ -35,7 +35,8 @@ public class BulletScript : MonoBehaviour
 
         if(pr != null){
             pr.Die();
+            Destroy(gameObject);
         }
-        Destroy(gameObject);
+        
     }
 }

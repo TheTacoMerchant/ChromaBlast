@@ -36,20 +36,47 @@ public class CombatManager : MonoBehaviour
 
     public Camera camera;
 
+    public List<BaseUnit> battleunits;
+
     private int mapNumber;
 
     public static CombatManager Instance;
 
     private GameState previousState;
+    private Tile combatTile;
 
     public void Awake(){
         Instance = this;
         mapNumber = Random.Range(1,7);
     }
 
-    public void Combat(GameState prevState, string bluePlayer, string pinkPlayer){
+    public void Combat(GameState prevState, Tile tile){
+        string bluePlayer = null,pinkPlayer = null;
+        int blueBattleUnitsIdx = 0,pinkBattleUnitsIdx = 0;
+        if(battleunits[0].Faction == Faction.Blue){
+            blueBattleUnitsIdx = 0;
+            pinkBattleUnitsIdx = 1;
+            if(battleunits[0].GetType() == typeof(Rifleman)) bluePlayer = "Rifleman";
+            else if(battleunits[0].GetType() == typeof(ShotgunUnit)) bluePlayer = "ShotgunUnit";
+            else if(battleunits[0].GetType() == typeof(SniperUnit)) bluePlayer = "SniperUnit";
+
+            if(battleunits[1].GetType() == typeof(Rifleman)) pinkPlayer = "Rifleman";
+            if(battleunits[1].GetType() == typeof(ShotgunUnit)) pinkPlayer = "ShotgunUnit";
+            if(battleunits[1].GetType() == typeof(SniperUnit)) pinkPlayer = "SniperUnit";
+        } else {
+            blueBattleUnitsIdx = 1;
+            pinkBattleUnitsIdx = 0;
+            if(battleunits[0].GetType() == typeof(Rifleman)) pinkPlayer = "Rifleman";
+            else if(battleunits[0].GetType() == typeof(ShotgunUnit)) pinkPlayer = "ShotgunUnit";
+            else if(battleunits[0].GetType() == typeof(SniperUnit)) pinkPlayer = "SniperUnit";
+            
+            if(battleunits[1].GetType() == typeof(Rifleman)) bluePlayer = "Rifleman";
+            if(battleunits[1].GetType() == typeof(ShotgunUnit)) bluePlayer = "ShotgunUnit";
+            if(battleunits[1].GetType() == typeof(SniperUnit)) bluePlayer = "SniperUnit";
+        }
 
         previousState = prevState;
+        combatTile = tile;
 
         if(mapNumber == 1){
             if(bluePlayer == "Rifleman"){
@@ -184,10 +211,32 @@ public class CombatManager : MonoBehaviour
             }
             panCamera(Map6.transform.position.x, Map6.transform.position.y);
         }
+        // THIS IS TEMPORARY
+        List<string> players = new List<string>{"pink", "blue"};
+        //var random = new Random();
+        int idx = Random.Range(0,2);
+        Debug.Log(idx);
+        string winner = players[idx];
+
+        // keep this
+        Debug.Log($"Winner is {winner}.");
+        if(winner == "pink"){
+            DestroyImmediate(battleunits[blueBattleUnitsIdx]);
+            Debug.Log($"trying to destroy {battleunits[blueBattleUnitsIdx]}");
+            combatTile.spriteRenderer.color = combatTile.pink;
+            tile.SetUnit(battleunits[pinkBattleUnitsIdx]);
+        } else {
+            combatTile.spriteRenderer.color = combatTile.blue;
+            Debug.Log($"trying to destroy {battleunits[pinkBattleUnitsIdx]}");
+            DestroyImmediate(battleunits[pinkBattleUnitsIdx]);
+            tile.SetUnit(battleunits[blueBattleUnitsIdx]);
+        }
+        panCamera(1f,-1.66f);
+        GameManager.Instance.ChangeState(prevState);
     }
 
     public void panCamera(float x, float y){
-        camera.transform.position = new Vector3(x,y,-10f);
+        camera.transform.position = new Vector3(x,y,-5f);
     }
 
     public void SwitchStates(){

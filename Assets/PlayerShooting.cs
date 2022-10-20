@@ -6,13 +6,14 @@ public class PlayerShooting : MonoBehaviour
 {
     public Transform PlayerShootPoint;
     public GameObject Bullet;
+    public KeyCode Shoot = KeyCode.Space;
 
-    public float bulletForce = 10f;
+    public float bulletForce = 5f;
 
     // Update is called once per frame
     void Update()
     {
-        if(Input.GetKeyDown(KeyCode.Space)){
+        if(Input.GetKeyDown(Shoot)){
             Shooting();
         }
     }

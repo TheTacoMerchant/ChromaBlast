@@ -12,8 +12,8 @@ public class PlayerMovement : MonoBehaviour
     public KeyCode Forward = KeyCode.W;
     public KeyCode Right = KeyCode.D;
     public KeyCode Left = KeyCode.A;
-    public float moveVec = 0.75f;
-    public float turnRadius = 30f;
+    public float moveVec = 0.25f;
+    public float turnRadius = 15f;
 
     void Update()
     {
