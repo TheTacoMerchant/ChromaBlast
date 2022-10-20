@@ -8,7 +8,7 @@ public class PlayerShooting : MonoBehaviour
     public GameObject Bullet;
     public KeyCode Shoot = KeyCode.Space;
 
-    public float bulletForce = 5f;
+    public float bulletForce = 0.5f;
 
     // Update is called once per frame
     void Update()

@@ -44,6 +44,7 @@ public class CombatManager : MonoBehaviour
 
     private GameState previousState;
     private Tile combatTile;
+    private int blueBattleUnitsIdx = 0,pinkBattleUnitsIdx = 0;
 
     public void Awake(){
         Instance = this;
@@ -52,7 +53,7 @@ public class CombatManager : MonoBehaviour
 
     public void Combat(GameState prevState, Tile tile){
         string bluePlayer = null,pinkPlayer = null;
-        int blueBattleUnitsIdx = 0,pinkBattleUnitsIdx = 0;
+        
         if(battleunits[0].Faction == Faction.Blue){
             blueBattleUnitsIdx = 0;
             pinkBattleUnitsIdx = 1;
@@ -211,6 +212,7 @@ public class CombatManager : MonoBehaviour
             }
             panCamera(Map6.transform.position.x, Map6.transform.position.y);
         }
+        
         // THIS IS TEMPORARY
         List<string> players = new List<string>{"pink", "blue"};
         //var random = new Random();
@@ -218,28 +220,15 @@ public class CombatManager : MonoBehaviour
         Debug.Log(idx);
         string winner = players[idx];
 
-        // keep this
-        Debug.Log($"Winner is {winner}.");
-        if(winner == "pink"){
-            Debug.Log($"trying to destroy {battleunits[blueBattleUnitsIdx]}");
-            battleunits[blueBattleUnitsIdx].OccupiedTile.killUnit();
-            combatTile.spriteRenderer.color = combatTile.pink;
-            tile.SetUnit(battleunits[pinkBattleUnitsIdx]);
-        } else {
-            combatTile.spriteRenderer.color = combatTile.blue;
-            Debug.Log($"trying to destroy {battleunits[pinkBattleUnitsIdx]}");
-            battleunits[pinkBattleUnitsIdx].OccupiedTile.killUnit();
-            tile.SetUnit(battleunits[blueBattleUnitsIdx]);
-        }
-        panCamera(1f,-1.66f);
-        GameManager.Instance.ChangeState(prevState);
+        //SwitchStates(winner);
     }
 
     public void panCamera(float x, float y){
         camera.transform.position = new Vector3(x,y,-5f);
     }
 
-    public void SwitchStates(){
+    public void SwitchStates(string winner){
+        manageWinner(winner);
         panCamera(1f,-1.66f);
         GameManager.Instance.ChangeState(previousState);
         GameObject[] blueUnits = GameObject.FindGameObjectsWithTag("Blue");
@@ -256,7 +245,20 @@ public class CombatManager : MonoBehaviour
                 Destroy(pinkUnit);
             }
         }
-        
-        
+    }
+
+    private void manageWinner(string winner){
+        Debug.Log($"Winner is {winner}.");
+        if(winner == "pink"){
+            battleunits[blueBattleUnitsIdx].OccupiedTile.killUnit();
+            Debug.Log($"trying to destroy {battleunits[blueBattleUnitsIdx]}");
+            combatTile.spriteRenderer.color = combatTile.pink;
+            combatTile.SetUnit(battleunits[pinkBattleUnitsIdx]);
+        } else {
+            combatTile.spriteRenderer.color = combatTile.blue;
+            Debug.Log($"trying to destroy {battleunits[pinkBattleUnitsIdx]}");
+            battleunits[pinkBattleUnitsIdx].OccupiedTile.killUnit();
+            combatTile.SetUnit(battleunits[blueBattleUnitsIdx]);
+        }
     }
 }

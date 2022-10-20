@@ -16,6 +16,19 @@ public class BulletScript : MonoBehaviour
     }
 
     void OnCollisionEnter2D(Collision2D collision){
+        Damage pr;
+        if(collision.gameObject.CompareTag("Blue")){
+            Destroy(gameObject);
+            Debug.Log("Blue hit!!");
+            CombatManager.Instance.SwitchStates("pink");
+        }
+
+        if(collision.gameObject.CompareTag("Pink")){
+            Destroy(gameObject);
+            Debug.Log("Pink hit!!");
+            CombatManager.Instance.SwitchStates("blue");
+        }
+
         Destroy(gameObject,10f);
 
         var speed = lastVelocity.magnitude;
@@ -24,19 +37,4 @@ public class BulletScript : MonoBehaviour
         rb.velocity = direction * Mathf.Max(speed, 0f);
     }
 
-    void OnTriggerEnter2D (Collider2D hitInformation){
-        Damage pr;
-        if(hitInformation.tag == "Blue" || hitInformation.tag == "Pink"){
-            pr = hitInformation.GetComponent<Damage>();
-        }
-        else{
-            pr = null;
-        }
-
-        if(pr != null){
-            pr.Die();
-            Destroy(gameObject);
-        }
-        
-    }
 }
