@@ -59,6 +59,7 @@ public class Tile : MonoBehaviour
                     CombatManager.Instance.battleunits = new List<BaseUnit>{UnitManager.Instance.SelectedHero, enemy};
                     GameManager.Instance.ChangeState(GameState.CombatMode, this);
                     UnitManager.Instance.SetSelectedUnit(null);
+                    TurnManager.Instance.hasMovedThisTurn = true;
                 }
             }
         }
@@ -106,8 +107,7 @@ public class Tile : MonoBehaviour
         }
     }
 
-    public void killUnit()
-    {
+    public void killUnit(){
         Destroy(OccupiedUnit.gameObject);
     }
 }
