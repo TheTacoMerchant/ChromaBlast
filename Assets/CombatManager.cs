@@ -221,14 +221,14 @@ public class CombatManager : MonoBehaviour
         // keep this
         Debug.Log($"Winner is {winner}.");
         if(winner == "pink"){
-            DestroyImmediate(battleunits[blueBattleUnitsIdx]);
             Debug.Log($"trying to destroy {battleunits[blueBattleUnitsIdx]}");
+            battleunits[blueBattleUnitsIdx].OccupiedTile.killUnit();
             combatTile.spriteRenderer.color = combatTile.pink;
             tile.SetUnit(battleunits[pinkBattleUnitsIdx]);
         } else {
             combatTile.spriteRenderer.color = combatTile.blue;
             Debug.Log($"trying to destroy {battleunits[pinkBattleUnitsIdx]}");
-            DestroyImmediate(battleunits[pinkBattleUnitsIdx]);
+            battleunits[pinkBattleUnitsIdx].OccupiedTile.killUnit();
             tile.SetUnit(battleunits[blueBattleUnitsIdx]);
         }
         panCamera(1f,-1.66f);

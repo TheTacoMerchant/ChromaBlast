@@ -105,4 +105,9 @@ public class Tile : MonoBehaviour
             return false;
         }
     }
+
+    public void killUnit()
+    {
+        Destroy(OccupiedUnit.gameObject);
+    }
 }
