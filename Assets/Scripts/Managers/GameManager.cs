@@ -24,8 +24,9 @@ public class GameManager : MonoBehaviour
         return state;
     }
 
-    public void ChangeState(GameState gamestate)
+    public void ChangeState(GameState gamestate, Tile tile = null)
     {
+        GameState oldstate = state;
         state = gamestate;
         Debug.Log($"Just entered ${gamestate}");
 
@@ -42,7 +43,7 @@ public class GameManager : MonoBehaviour
             case GameState.BattleModePink:
                 break;
             case GameState.CombatMode:
-                CombatManager.Instance.Combat(state, "Rifleman", "Rifleman");
+                CombatManager.Instance.Combat(oldstate, tile);
                 break;
             case GameState.EndGame:
                 break;

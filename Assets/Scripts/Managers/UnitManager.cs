@@ -27,6 +27,7 @@ public class UnitManager : MonoBehaviour
     {
         var rifle1pink = Instantiate(units[3].unitPrefab);
         GridManager.Instance.getTile(new Vector2(0, 0)).SetUnit(rifle1pink);
+        //DestroyImmediate(rifle1pink);
         var rifle2pink = Instantiate(units[3].unitPrefab);
         GridManager.Instance.getTile(new Vector2(1, 1)).SetUnit(rifle2pink);
         var shotgunpink = Instantiate(units[4].unitPrefab);
