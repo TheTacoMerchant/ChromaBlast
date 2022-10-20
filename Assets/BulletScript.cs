@@ -16,7 +16,6 @@ public class BulletScript : MonoBehaviour
     }
 
     void OnCollisionEnter2D(Collision2D collision){
-        Damage pr;
         if(collision.gameObject.CompareTag("Blue")){
             Destroy(gameObject);
             Debug.Log("Blue hit!!");
