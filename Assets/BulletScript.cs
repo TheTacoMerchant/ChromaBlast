@@ -5,35 +5,37 @@ using UnityEngine;
 public class BulletScript : MonoBehaviour
 {
     private Rigidbody2D rb;
+    //public GameObject bullet;
     Vector3 lastVelocity;
+    public float bulletTime = 5f;
 
     void Awake(){
         rb = GetComponent<Rigidbody2D>();
     }
 
     void Update(){
-        lastVelocity = rb.velocity;
+        lastVelocity = rb.velocity/2;
     }
 
     void OnCollisionEnter2D(Collision2D collision){
         if(collision.gameObject.CompareTag("Blue")){
-            Destroy(gameObject);
+            Destroy(gameObject, 1f);
             Debug.Log("Blue hit!!");
             CombatManager.Instance.SwitchStates("pink");
         }
 
         if(collision.gameObject.CompareTag("Pink")){
-            Destroy(gameObject);
+            Destroy(gameObject, 1f);
             Debug.Log("Pink hit!!");
             CombatManager.Instance.SwitchStates("blue");
         }
 
-        Destroy(gameObject,10f);
+        Destroy(gameObject, bulletTime);
 
         var speed = lastVelocity.magnitude;
-        var direction = Vector3.Reflect(lastVelocity.normalized, collision.contacts[0].normal);
-
-        rb.velocity = direction * Mathf.Max(speed, 0f);
+        var direction = Vector3.Reflect(lastVelocity, collision.contacts[0].normal).normalized;
+        transform.rotation = Quaternion.Euler(0f,0f,direction.z);
+        rb.velocity = direction * speed;
     }
 
 }

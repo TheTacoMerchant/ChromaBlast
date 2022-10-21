@@ -213,14 +213,14 @@ public class CombatManager : MonoBehaviour
             panCamera(Map6.transform.position.x, Map6.transform.position.y);
         }
         
-        // THIS IS TEMPORARY
+        /*// THIS IS TEMPORARY
         List<string> players = new List<string>{"pink", "blue"};
         //var random = new Random();
         int idx = Random.Range(0,2);
         Debug.Log(idx);
         string winner = players[idx];
 
-        //SwitchStates(winner);
+        //SwitchStates(winner);*/
     }
 
     public void panCamera(float x, float y){
@@ -230,7 +230,6 @@ public class CombatManager : MonoBehaviour
     public void SwitchStates(string winner){
         manageWinner(winner);
         panCamera(1f,-1.66f);
-        GameManager.Instance.ChangeState(previousState);
         GameObject[] blueUnits = GameObject.FindGameObjectsWithTag("Blue");
         GameObject[] pinkUnits = GameObject.FindGameObjectsWithTag("Pink");
         
@@ -245,6 +244,8 @@ public class CombatManager : MonoBehaviour
                 Destroy(pinkUnit);
             }
         }
+
+        GameManager.Instance.ChangeState(previousState);
     }
 
     private void manageWinner(string winner){
@@ -252,9 +253,17 @@ public class CombatManager : MonoBehaviour
         if(winner == "pink"){
             battleunits[blueBattleUnitsIdx].OccupiedTile.killUnit();
             Debug.Log($"trying to destroy {battleunits[blueBattleUnitsIdx]}");
+            if(combatTile.spriteRenderer.color == combatTile.blue){
+                GameManager.Instance.PinkScore += 1;
+                GameManager.Instance.BlueScore -= 1;
+            }
             combatTile.spriteRenderer.color = combatTile.pink;
             combatTile.SetUnit(battleunits[pinkBattleUnitsIdx]);
         } else {
+            if(combatTile.spriteRenderer.color == combatTile.pink){
+                GameManager.Instance.PinkScore -= 1;
+                GameManager.Instance.BlueScore += 1;
+            }
             combatTile.spriteRenderer.color = combatTile.blue;
             Debug.Log($"trying to destroy {battleunits[pinkBattleUnitsIdx]}");
             battleunits[pinkBattleUnitsIdx].OccupiedTile.killUnit();
