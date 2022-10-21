@@ -69,8 +69,26 @@ public class Tile : MonoBehaviour
             {
                 // Unit takes over unoccupied hex
                 SetUnit(UnitManager.Instance.SelectedHero);
-                if (UnitManager.Instance.SelectedHero.Faction == Faction.Blue) spriteRenderer.color = blue;
-                else spriteRenderer.color = pink;
+                if (UnitManager.Instance.SelectedHero.Faction == Faction.Blue){
+                    if(spriteRenderer.color == grey){
+                        GameManager.Instance.BlueScore += 1;
+                    }
+                    else if(spriteRenderer.color == pink){
+                        GameManager.Instance.BlueScore += 1;
+                        GameManager.Instance.PinkScore -= 1;
+                    }
+                    spriteRenderer.color = blue;
+                } 
+                else {
+                    if(spriteRenderer.color == grey){
+                        GameManager.Instance.PinkScore += 1;
+                    }
+                    else if (spriteRenderer.color == blue){
+                        GameManager.Instance.PinkScore += 1;
+                        GameManager.Instance.BlueScore -= 1;
+                    }
+                    spriteRenderer.color = pink;
+                }
                 UnitManager.Instance.SetSelectedUnit(null);
                 TurnManager.Instance.hasMovedThisTurn = true;
             }
