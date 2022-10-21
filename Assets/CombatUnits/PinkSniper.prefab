@@ -25,7 +25,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 744967223052548373}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.01, y: 1.58, z: 0}
+  m_LocalPosition: {x: 0.01, y: 2.45, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -62,7 +62,6 @@ GameObject:
   - component: {fileID: 4714706392899062878}
   - component: {fileID: 8625025737690908023}
   - component: {fileID: 4068872378033570674}
-  - component: {fileID: 6898055478659245780}
   m_Layer: 0
   m_Name: PinkSniper
   m_TagString: Pink
@@ -84,7 +83,7 @@ Transform:
   m_Children:
   - {fileID: 211560398814680768}
   m_Father: {fileID: 0}
-  m_RootOrder: 14
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &8264615854238338995
 SpriteRenderer:
@@ -201,12 +200,12 @@ Rigidbody2D:
   m_UseAutoMass: 0
   m_Mass: 1
   m_LinearDrag: 0
-  m_AngularDrag: 0
+  m_AngularDrag: 0.05
   m_GravityScale: 0
   m_Material: {fileID: 0}
   m_Interpolate: 0
   m_SleepingMode: 1
-  m_CollisionDetection: 0
+  m_CollisionDetection: 1
   m_Constraints: 4
 --- !u!114 &4068872378033570674
 MonoBehaviour:
@@ -228,15 +227,3 @@ MonoBehaviour:
   Left: 97
   moveVec: 0.75
   turnRadius: 30
---- !u!114 &6898055478659245780
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7291070253192386564}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0e6bdd7cf1681410e878960b704a1ceb, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
