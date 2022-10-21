@@ -2,12 +2,21 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour
 {
     public static GameManager Instance;
 
     public GameState state;
+
+    public int BlueScore = 0;
+    public int BlueCoins = 0;
+
+    public int PinkScore = 0;
+    public int PinkCoins = 0;
+
+    //public Panel panel;
 
     public void Awake()
     {
@@ -34,6 +43,7 @@ public class GameManager : MonoBehaviour
         {
             case GameState.GenerateGrid:
                 GridManager.Instance.GenerateGrid();
+                GameObject.Find("ShopPanel").SetActive(false);
                 break;
             case GameState.SpawnUnits:
                 UnitManager.Instance.SpawnUnits();
