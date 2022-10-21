@@ -77,7 +77,10 @@ public class Tile : MonoBehaviour
                         GameManager.Instance.BlueScore += 1;
                         GameManager.Instance.PinkScore -= 1;
                     }
-                    spriteRenderer.color = blue;
+                    if (spriteRenderer.color != homeBlue && spriteRenderer.color != homePink)
+                    {
+                        spriteRenderer.color = blue;
+                    }
                 } 
                 else {
                     if(spriteRenderer.color == grey){
@@ -87,7 +90,10 @@ public class Tile : MonoBehaviour
                         GameManager.Instance.PinkScore += 1;
                         GameManager.Instance.BlueScore -= 1;
                     }
-                    spriteRenderer.color = pink;
+                    if (spriteRenderer.color != homeBlue && spriteRenderer.color != homePink)
+                    {
+                        spriteRenderer.color = pink;
+                    }
                 }
                 UnitManager.Instance.SetSelectedUnit(null);
                 TurnManager.Instance.hasMovedThisTurn = true;

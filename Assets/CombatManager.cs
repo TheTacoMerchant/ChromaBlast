@@ -257,14 +257,12 @@ public class CombatManager : MonoBehaviour
                 GameManager.Instance.PinkScore += 1;
                 GameManager.Instance.BlueScore -= 1;
             }
-            combatTile.spriteRenderer.color = combatTile.pink;
             combatTile.SetUnit(battleunits[pinkBattleUnitsIdx]);
         } else {
             if(combatTile.spriteRenderer.color == combatTile.pink){
                 GameManager.Instance.PinkScore -= 1;
                 GameManager.Instance.BlueScore += 1;
             }
-            combatTile.spriteRenderer.color = combatTile.blue;
             Debug.Log($"trying to destroy {battleunits[pinkBattleUnitsIdx]}");
             battleunits[pinkBattleUnitsIdx].OccupiedTile.killUnit();
             combatTile.SetUnit(battleunits[blueBattleUnitsIdx]);
