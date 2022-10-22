@@ -10,10 +10,13 @@ public class PlayerShooting : MonoBehaviour
 
     public float bulletForce = 0.00001f;
 
-    // Update is called once per frame
+    public float fireRate = 1f;
+    public float nextFire = 0f;
+
     void Update()
     {
-        if(Input.GetKeyDown(Shoot)){
+        if(Input.GetKeyDown(Shoot) && Time.time > nextFire){
+            nextFire = Time.time + fireRate;
             Shooting();
         }
     }

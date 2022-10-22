@@ -5,16 +5,15 @@ using UnityEngine;
 public class BulletScript : MonoBehaviour
 {
     private Rigidbody2D rb;
-    //public GameObject bullet;
     Vector3 lastVelocity;
-    public float bulletTime = 5f;
+    public float bulletTime = 3f;
 
     void Awake(){
         rb = GetComponent<Rigidbody2D>();
     }
 
     void Update(){
-        lastVelocity = rb.velocity/2;
+        lastVelocity = rb.velocity/1.25f;
     }
 
     void OnCollisionEnter2D(Collision2D collision){

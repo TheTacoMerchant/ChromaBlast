@@ -46,12 +46,16 @@ public class CombatManager : MonoBehaviour
     private Tile combatTile;
     private int blueBattleUnitsIdx = 0,pinkBattleUnitsIdx = 0;
 
+    public GameObject audioScript;
+
     public void Awake(){
         Instance = this;
         mapNumber = Random.Range(1,7);
     }
 
     public void Combat(GameState prevState, Tile tile){
+        audioScript.GetComponent<BackgroundMusicScript>().SwitchSongs();
+        mapNumber = Random.Range(1,7);
         string bluePlayer = null,pinkPlayer = null;
         
         if(battleunits[0].Faction == Faction.Blue){
@@ -228,6 +232,7 @@ public class CombatManager : MonoBehaviour
     }
 
     public void SwitchStates(string winner){
+        audioScript.GetComponent<BackgroundMusicScript>().SwitchSongs();
         manageWinner(winner);
         panCamera(1f,-1.66f);
         GameObject[] blueUnits = GameObject.FindGameObjectsWithTag("Blue");
@@ -257,6 +262,7 @@ public class CombatManager : MonoBehaviour
                 GameManager.Instance.PinkScore += 1;
                 GameManager.Instance.BlueScore -= 1;
             }
+            combatTile.spriteRenderer.color = combatTile.pink;
             combatTile.SetUnit(battleunits[pinkBattleUnitsIdx]);
         } else {
             if(combatTile.spriteRenderer.color == combatTile.pink){
@@ -264,6 +270,7 @@ public class CombatManager : MonoBehaviour
                 GameManager.Instance.BlueScore += 1;
             }
             Debug.Log($"trying to destroy {battleunits[pinkBattleUnitsIdx]}");
+            combatTile.spriteRenderer.color = combatTile.blue;
             battleunits[pinkBattleUnitsIdx].OccupiedTile.killUnit();
             combatTile.SetUnit(battleunits[blueBattleUnitsIdx]);
         }

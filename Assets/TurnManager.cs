@@ -7,13 +7,14 @@ using UnityEngine.UI;
 public class TurnManager : MonoBehaviour
 {
     public static TurnManager Instance;
-    private int turns = 1;
+    public int turns;
     public bool hasMovedThisTurn;
     public Text blueScore;
     public Text pinkScore;
     public Text turnLabel;
     public Text blueCoins;
     public Text pinkCoins;
+    public Text numTurns;
 
     void Awake()
     {
@@ -26,10 +27,12 @@ public class TurnManager : MonoBehaviour
         blueScore.text = "Blue: " + GameManager.Instance.BlueScore;
         if(GameManager.Instance.GetState() == GameState.BattleModePink){
             Debug.Log("Changing to Blues turn.");
-            if(turns == 10){
+            turns++;
+            if(turns >= 10){
                 GameManager.Instance.ChangeState(GameState.EndGame);
             }
-            turns++;
+            numTurns.text = "Turn " + turns + "/10";
+            numTurns.color = new Color(0.0f,35.0f,255.0f,1.0f);
             turnLabel.text = "Turn: Blue";
             turnLabel.color = new Color(0.0f,35.0f,255.0f,1.0f);
             GameManager.Instance.PinkCoins += GameManager.Instance.PinkScore;
@@ -40,6 +43,7 @@ public class TurnManager : MonoBehaviour
             Debug.Log("Changing to Pinks turn.");
             turnLabel.text = "Turn: Pink";
             turnLabel.color = new Color(219.0f,0.0f,255.0f,1.0f);
+            numTurns.color = new Color(219.0f,0.0f,255.0f,1.0f);
             GameManager.Instance.BlueCoins += GameManager.Instance.BlueScore;
             blueCoins.text = "Coins: " + GameManager.Instance.BlueCoins;
             GameManager.Instance.ChangeState(GameState.BattleModePink);
