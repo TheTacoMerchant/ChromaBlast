@@ -1,15 +1,21 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class ShopButton : MonoBehaviour
 {
-    // Start is called before the first frame update
+
+    public GameObject panel;
+    public GameObject battleModePanel;
+
     public void OpenShop(){
-        GameObject.Find("ShopPanel").SetActive(true);
+        panel.SetActive(true);
+        battleModePanel.SetActive(false);
     }
 
     public void CloseShop(){
-        GameObject.Find("ShopPanel").SetActive(false);
+        panel.SetActive(false);
+        battleModePanel.SetActive(true);
     }
 }
