@@ -16,7 +16,11 @@ public class GameManager : MonoBehaviour
     public int PinkScore = 0;
     public int PinkCoins = 0;
 
-    //public Panel panel;
+    public GameObject victoryCanvas;
+    public Text pinkWinner;
+    public Text blueWinner;
+
+    public AudioClip endTransistion;
 
     public void Awake()
     {
@@ -56,6 +60,35 @@ public class GameManager : MonoBehaviour
                 CombatManager.Instance.Combat(oldstate, tile);
                 break;
             case GameState.EndGame:
+                GameObject background = GameObject.Find("BackgroundAudio");
+                BackgroundMusicScript stopping = (BackgroundMusicScript) background.GetComponent(typeof(BackgroundMusicScript));
+                stopping.EndSongs();
+                victoryCanvas.SetActive(true);
+                if(PinkScore > BlueScore){
+                    pinkWinner.enabled = true;
+                    blueWinner.enabled = false;
+                }
+                else if(BlueScore > PinkScore){
+                    pinkWinner.enabled = false;
+                    blueWinner.enabled = true;
+                }
+                else{
+                    if(PinkCoins > BlueCoins){
+                        pinkWinner.enabled = true;
+                        blueWinner.enabled = false;
+                    }
+                    else if(BlueCoins > PinkCoins){
+                        pinkWinner.enabled = false;
+                        blueWinner.enabled = true;
+                    }
+                    else{
+                        pinkWinner.text = "DRAW";
+                        pinkWinner.color = new Color(255f,255f,255f,1f);
+                    }
+                }
+                AudioSource endAudio = GetComponent<AudioSource>();
+                endAudio.clip = endTransistion;
+                endAudio.Play();
                 break;
         }
     }
