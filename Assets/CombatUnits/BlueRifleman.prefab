@@ -47,7 +47,9 @@ MonoBehaviour:
   PlayerShootPoint: {fileID: 4720480724828646168}
   Bullet: {fileID: 8693096950010387305, guid: 7c610885a35e64b25a8072a064e89045, type: 3}
   Shoot: 47
-  bulletForce: 10
+  bulletForce: 5
+  fireRate: 1
+  nextFire: 0
 --- !u!1 &4136526920583968299
 GameObject:
   m_ObjectHideFlags: 0
@@ -83,7 +85,7 @@ Transform:
   m_Children:
   - {fileID: 4720480724828646168}
   m_Father: {fileID: 0}
-  m_RootOrder: 0
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &4885387297646113378
 SpriteRenderer:
@@ -219,11 +221,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8fcacbdda2a0640c59bfbc40b2835631, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  movementSpeed: 5
+  movementSpeed: 2
   rb: {fileID: 1746199850941989980}
   Backward: 274
   Forward: 273
   Right: 275
   Left: 276
   moveVec: 0.75
-  turnRadius: 30
+  turnRadius: 75
