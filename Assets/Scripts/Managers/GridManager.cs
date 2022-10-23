@@ -11,6 +11,8 @@ public class GridManager : MonoBehaviour
     [SerializeField] private int depth;
     [SerializeField] private Tile tilePrefab;
     private Dictionary<Vector2, Tile> tileArray;
+    public Vector2[] pinkHome = { new Vector2(0, 0), new Vector2(0, 1), new Vector2(1, 0), new Vector2(1, 1) };
+    public Vector2[] blueHome = { new Vector2(3, 2), new Vector2(3, 3), new Vector2(4, 1), new Vector2(4, 2) };
 
     private void Awake()
     {
@@ -23,9 +25,6 @@ public class GridManager : MonoBehaviour
         int height = 2 * depth - 1;
         int[] widths = new int[height];
         double[] startX = new double[height];
-
-        Vector2[] pinkHome = { new Vector2(0, 0), new Vector2(0, 1), new Vector2(1, 0), new Vector2(1, 1) };
-        Vector2[] blueHome = { new Vector2(3, 2), new Vector2(3, 3), new Vector2(4, 1), new Vector2(4, 2) };
 
         for (int i = 0; i < depth; i++)
         {

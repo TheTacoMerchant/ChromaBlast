@@ -262,7 +262,10 @@ public class CombatManager : MonoBehaviour
                 GameManager.Instance.PinkScore += 1;
                 GameManager.Instance.BlueScore -= 1;
             }
-            combatTile.spriteRenderer.color = combatTile.pink;
+            if (combatTile.spriteRenderer.color != combatTile.homeBlue && combatTile.spriteRenderer.color != combatTile.homePink)
+            {
+                combatTile.spriteRenderer.color = combatTile.pink;
+            }
             combatTile.SetUnit(battleunits[pinkBattleUnitsIdx]);
         } else {
             if(combatTile.spriteRenderer.color == combatTile.pink){
@@ -270,8 +273,11 @@ public class CombatManager : MonoBehaviour
                 GameManager.Instance.BlueScore += 1;
             }
             Debug.Log($"trying to destroy {battleunits[pinkBattleUnitsIdx]}");
-            combatTile.spriteRenderer.color = combatTile.blue;
-            battleunits[pinkBattleUnitsIdx].OccupiedTile.killUnit();
+            if (combatTile.spriteRenderer.color != combatTile.homeBlue && combatTile.spriteRenderer.color != combatTile.homePink)
+            {
+                combatTile.spriteRenderer.color = combatTile.blue;
+            }
+                battleunits[pinkBattleUnitsIdx].OccupiedTile.killUnit();
             combatTile.SetUnit(battleunits[blueBattleUnitsIdx]);
         }
     }

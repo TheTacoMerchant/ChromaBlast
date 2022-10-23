@@ -44,63 +44,17 @@ public class Tile : MonoBehaviour
 
     void OnMouseDown()
     {
-        if (GameManager.Instance.state != GameState.BattleModeBlue && GameManager.Instance.state != GameState.BattleModePink) return;
-
-
-        if (OccupiedUnit != null)
+        if (ShopManagerScript.Instance.isPlacingNewUnit)
         {
-            if (OccupiedUnit.CanBeSelected() && !TurnManager.Instance.hasMovedThisTurn) UnitManager.Instance.SetSelectedUnit(OccupiedUnit); //If its my turn and I select another one of my own pieces, select the new piece.
-            else
-            {
-                if (UnitManager.Instance.SelectedHero != null && UnitMayMove(UnitManager.Instance.SelectedHero, UnitManager.Instance.SelectedHero.OccupiedTile, this))
-                {
-                    // Enter combat
-                    var enemy = (BaseUnit)OccupiedUnit;
-                    CombatManager.Instance.battleunits = new List<BaseUnit>{UnitManager.Instance.SelectedHero, enemy};
-                    GameManager.Instance.ChangeState(GameState.CombatMode, this);
-                    UnitManager.Instance.SetSelectedUnit(null);
-                    TurnManager.Instance.hasMovedThisTurn = true;
-                }
-            }
-        }
+            mouseDownBehaviourPlacingNewUnit();
+        } 
         else
         {
-            if (UnitManager.Instance.SelectedHero != null && UnitMayMove(UnitManager.Instance.SelectedHero, UnitManager.Instance.SelectedHero.OccupiedTile, this))
-            {
-                // Unit takes over unoccupied hex
-                SetUnit(UnitManager.Instance.SelectedHero);
-                if (UnitManager.Instance.SelectedHero.Faction == Faction.Blue){
-                    if(spriteRenderer.color == grey){
-                        GameManager.Instance.BlueScore += 1;
-                    }
-                    else if(spriteRenderer.color == pink){
-                        GameManager.Instance.BlueScore += 1;
-                        GameManager.Instance.PinkScore -= 1;
-                    }
-                    if (spriteRenderer.color != homeBlue && spriteRenderer.color != homePink)
-                    {
-                        spriteRenderer.color = blue;
-                    }
-                } 
-                else {
-                    if(spriteRenderer.color == grey){
-                        GameManager.Instance.PinkScore += 1;
-                    }
-                    else if (spriteRenderer.color == blue){
-                        GameManager.Instance.PinkScore += 1;
-                        GameManager.Instance.BlueScore -= 1;
-                    }
-                    if (spriteRenderer.color != homeBlue && spriteRenderer.color != homePink)
-                    {
-                        spriteRenderer.color = pink;
-                    }
-                }
-                UnitManager.Instance.SetSelectedUnit(null);
-                TurnManager.Instance.hasMovedThisTurn = true;
-            }
+            mouseDownBehaviourDefault();
         }
-
     }
+
+
 
     public void SetUnit(BaseUnit unit)
     {
@@ -133,5 +87,75 @@ public class Tile : MonoBehaviour
 
     public void killUnit(){
         Destroy(OccupiedUnit.gameObject);
+    }
+
+    private void mouseDownBehaviourDefault()
+    {
+        if (GameManager.Instance.state != GameState.BattleModeBlue && GameManager.Instance.state != GameState.BattleModePink) return;
+
+
+        if (OccupiedUnit != null)
+        {
+            if (OccupiedUnit.CanBeSelected() && !TurnManager.Instance.hasMovedThisTurn) UnitManager.Instance.SetSelectedUnit(OccupiedUnit); //If its my turn and I select another one of my own pieces, select the new piece.
+            else
+            {
+                if (UnitManager.Instance.SelectedHero != null && UnitMayMove(UnitManager.Instance.SelectedHero, UnitManager.Instance.SelectedHero.OccupiedTile, this))
+                {
+                    // Enter combat
+                    var enemy = (BaseUnit)OccupiedUnit;
+                    CombatManager.Instance.battleunits = new List<BaseUnit> { UnitManager.Instance.SelectedHero, enemy };
+                    GameManager.Instance.ChangeState(GameState.CombatMode, this);
+                    UnitManager.Instance.SetSelectedUnit(null);
+                    TurnManager.Instance.hasMovedThisTurn = true;
+                }
+            }
+        }
+        else
+        {
+            if (UnitManager.Instance.SelectedHero != null && UnitMayMove(UnitManager.Instance.SelectedHero, UnitManager.Instance.SelectedHero.OccupiedTile, this))
+            {
+                // Unit takes over unoccupied hex
+                SetUnit(UnitManager.Instance.SelectedHero);
+                if (UnitManager.Instance.SelectedHero.Faction == Faction.Blue)
+                {
+                    if (spriteRenderer.color == grey)
+                    {
+                        GameManager.Instance.BlueScore += 1;
+                    }
+                    else if (spriteRenderer.color == pink)
+                    {
+                        GameManager.Instance.BlueScore += 1;
+                        GameManager.Instance.PinkScore -= 1;
+                    }
+                    if (spriteRenderer.color != homeBlue && spriteRenderer.color != homePink)
+                    {
+                        spriteRenderer.color = blue;
+                    }
+                }
+                else
+                {
+                    if (spriteRenderer.color == grey)
+                    {
+                        GameManager.Instance.PinkScore += 1;
+                    }
+                    else if (spriteRenderer.color == blue)
+                    {
+                        GameManager.Instance.PinkScore += 1;
+                        GameManager.Instance.BlueScore -= 1;
+                    }
+                    if (spriteRenderer.color != homeBlue && spriteRenderer.color != homePink)
+                    {
+                        spriteRenderer.color = pink;
+                    }
+                }
+                UnitManager.Instance.SetSelectedUnit(null);
+                TurnManager.Instance.hasMovedThisTurn = true;
+            }
+        }
+    }
+
+    private void mouseDownBehaviourPlacingNewUnit()
+    {
+        ShopManagerScript.Instance.handlePlacement(this);
     }
 }

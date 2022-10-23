@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8239354708746891996}
   - component: {fileID: 8862406779559363393}
-  - component: {fileID: 5804626204475710486}
+  - component: {fileID: 6211179789851492035}
   m_Layer: 0
   m_Name: PinkShotgun
   m_TagString: Untagged
@@ -85,7 +85,7 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &5804626204475710486
+--- !u!114 &6211179789851492035
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -94,7 +94,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 7882246670910838006}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6a8875eb7acdf6f43b627e43074f2a15, type: 3}
+  m_Script: {fileID: 11500000, guid: bf2fe8646f8cabc489fc99a5b512e945, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   UnitName: 

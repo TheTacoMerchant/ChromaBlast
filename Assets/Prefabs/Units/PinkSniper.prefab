@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8863948906330718917}
   - component: {fileID: 8333519580205200216}
-  - component: {fileID: 6473131863965707279}
+  - component: {fileID: -3981515269079062705}
   m_Layer: 0
   m_Name: PinkSniper
   m_TagString: Untagged
@@ -85,7 +85,7 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &6473131863965707279
+--- !u!114 &-3981515269079062705
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -94,7 +94,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 7221625841374438639}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6a8875eb7acdf6f43b627e43074f2a15, type: 3}
+  m_Script: {fileID: 11500000, guid: 600204253cf3bf44aa7468b52afbba68, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   UnitName: 
