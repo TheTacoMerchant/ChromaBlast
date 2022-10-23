@@ -608,6 +608,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   coins: 1000
   CoinsTXT: {fileID: 1047415308}
+  isPlacingNewUnit: 0
 --- !u!4 &134208930
 Transform:
   m_ObjectHideFlags: 0
@@ -1164,6 +1165,16 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   depth: 3
   tilePrefab: {fileID: -1565559719004191709, guid: af0b91c0c4306cd4c97c60beb12126e4, type: 3}
+  pinkHome:
+  - {x: 0, y: 0}
+  - {x: 0, y: 1}
+  - {x: 1, y: 0}
+  - {x: 1, y: 1}
+  blueHome:
+  - {x: 3, y: 2}
+  - {x: 3, y: 3}
+  - {x: 4, y: 1}
+  - {x: 4, y: 2}
 --- !u!4 &335919385
 Transform:
   m_ObjectHideFlags: 0
@@ -2863,6 +2874,8 @@ MonoBehaviour:
   PinkScore: 0
   PinkCoins: 0
   victoryCanvas: {fileID: 878503021}
+  pinkWinner: {fileID: 0}
+  blueWinner: {fileID: 0}
   endTransistion: {fileID: 8300000, guid: f8c7091fab79e46bcb5a1a878f33a7f0, type: 3}
 --- !u!82 &716810097
 AudioSource:
