@@ -87,6 +87,7 @@ public class Tile : MonoBehaviour
 
     public void killUnit(){
         Destroy(OccupiedUnit.gameObject);
+        OccupiedUnit = null;
     }
 
     private void mouseDownBehaviourDefault()

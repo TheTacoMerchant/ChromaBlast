@@ -78,4 +78,33 @@ public class GridManager : MonoBehaviour
         }
         return null;
     }
+
+    internal bool playersActive()
+    {
+        Vector2[] keys = tileArray.Keys.ToArray();
+
+        int blueNum = 0, pinkNum = 0;
+
+        for(int i=0; i < keys.Length; i++)
+        {
+            if (getTile(keys[i]).OccupiedUnit != null)
+            {
+                if (getTile(keys[i]).OccupiedUnit.Faction == Faction.Blue)
+                {
+                    blueNum++;
+                }
+                if (getTile(keys[i]).OccupiedUnit.Faction == Faction.Pink)
+                {
+                    pinkNum++;
+                }
+            }
+        }
+        if(blueNum == 0 || pinkNum == 0)
+        {
+            return false;
+        } else
+        {
+            return true;
+        }
+    }
 }

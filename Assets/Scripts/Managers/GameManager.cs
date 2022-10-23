@@ -22,6 +22,8 @@ public class GameManager : MonoBehaviour
 
     public AudioClip endTransistion;
 
+    public string winnerByCombat = null;
+
     public void Awake()
     {
         Instance = this;
@@ -64,7 +66,19 @@ public class GameManager : MonoBehaviour
                 BackgroundMusicScript stopping = (BackgroundMusicScript) background.GetComponent(typeof(BackgroundMusicScript));
                 stopping.EndSongs();
                 victoryCanvas.SetActive(true);
-                if(PinkScore > BlueScore){
+                if(winnerByCombat != null)
+                {
+                    if(winnerByCombat == "blue")
+                    {
+                        pinkWinner.enabled = false;
+                        blueWinner.enabled = true;
+                    } else
+                    {
+                        pinkWinner.enabled = true;
+                        blueWinner.enabled = false;
+                    }
+                }
+                else if(PinkScore > BlueScore){
                     pinkWinner.enabled = true;
                     blueWinner.enabled = false;
                 }

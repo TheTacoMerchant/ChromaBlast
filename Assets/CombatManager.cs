@@ -231,27 +231,39 @@ public class CombatManager : MonoBehaviour
         camera.transform.position = new Vector3(x,y,-5f);
     }
 
-    public void SwitchStates(string winner){
+    public void SwitchStates(string winner)
+    {
         audioScript.GetComponent<BackgroundMusicScript>().SwitchSongs();
         manageWinner(winner);
-        panCamera(1f,-1.66f);
+        panCamera(1f, -1.66f);
         GameObject[] blueUnits = GameObject.FindGameObjectsWithTag("Blue");
         GameObject[] pinkUnits = GameObject.FindGameObjectsWithTag("Pink");
-        
-        foreach(GameObject blueUnit in blueUnits){
-            if(blueUnit != null){
+
+        foreach (GameObject blueUnit in blueUnits)
+        {
+            if (blueUnit != null)
+            {
                 Destroy(blueUnit);
             }
         }
-        
-        foreach(GameObject pinkUnit in pinkUnits){
-            if(pinkUnit != null){
+
+        foreach (GameObject pinkUnit in pinkUnits)
+        {
+            if (pinkUnit != null)
+            {
                 Destroy(pinkUnit);
             }
         }
-
-        GameManager.Instance.ChangeState(previousState);
+        if (GridManager.Instance.playersActive())
+        {
+            GameManager.Instance.ChangeState(previousState);
+        } else
+        {
+            GameManager.Instance.winnerByCombat = winner;
+            GameManager.Instance.ChangeState(GameState.EndGame);
+        }
     }
+
 
     private void manageWinner(string winner){
         Debug.Log($"Winner is {winner}.");
