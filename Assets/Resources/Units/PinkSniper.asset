@@ -13,4 +13,4 @@ MonoBehaviour:
   m_Name: PinkSniper
   m_EditorClassIdentifier: 
   faction: 1
-  unitPrefab: {fileID: 6473131863965707279, guid: e40144a9638fe4c83949463fac7e2769, type: 3}
+  unitPrefab: {fileID: -3981515269079062705, guid: e40144a9638fe4c83949463fac7e2769, type: 3}

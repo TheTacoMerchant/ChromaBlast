@@ -13,4 +13,4 @@ MonoBehaviour:
   m_Name: PinkShotgun
   m_EditorClassIdentifier: 
   faction: 1
-  unitPrefab: {fileID: 5804626204475710486, guid: 5281bf0a48314408ba344f61859b644f, type: 3}
+  unitPrefab: {fileID: 6211179789851492035, guid: 5281bf0a48314408ba344f61859b644f, type: 3}
