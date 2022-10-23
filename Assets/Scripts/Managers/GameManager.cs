@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 
 public class GameManager : MonoBehaviour
 {
@@ -17,12 +18,10 @@ public class GameManager : MonoBehaviour
     public int PinkCoins = 0;
 
     public GameObject victoryCanvas;
-    public Text pinkWinner;
-    public Text blueWinner;
+    public TextMeshProUGUI pinkWinner;
+    public TextMeshProUGUI blueWinner;
 
     public AudioClip endTransistion;
-
-    public string winnerByCombat = null;
 
     public void Awake()
     {
@@ -66,38 +65,31 @@ public class GameManager : MonoBehaviour
                 BackgroundMusicScript stopping = (BackgroundMusicScript) background.GetComponent(typeof(BackgroundMusicScript));
                 stopping.EndSongs();
                 victoryCanvas.SetActive(true);
-                if(winnerByCombat != null)
-                {
-                    if(winnerByCombat == "blue")
-                    {
-                        pinkWinner.enabled = false;
-                        blueWinner.enabled = true;
-                    } else
-                    {
-                        pinkWinner.enabled = true;
-                        blueWinner.enabled = false;
-                    }
-                }
-                else if(PinkScore > BlueScore){
+                if(GameManager.Instance.PinkScore > GameManager.Instance.BlueScore){
                     pinkWinner.enabled = true;
                     blueWinner.enabled = false;
+                    Debug.Log("Pink Wins");
                 }
-                else if(BlueScore > PinkScore){
+                else if(GameManager.Instance.BlueScore > GameManager.Instance.PinkScore){
                     pinkWinner.enabled = false;
                     blueWinner.enabled = true;
+                    Debug.Log("Blue Wins");
                 }
                 else{
-                    if(PinkCoins > BlueCoins){
+                    if(GameManager.Instance.PinkCoins > GameManager.Instance.BlueCoins){
                         pinkWinner.enabled = true;
                         blueWinner.enabled = false;
+                        Debug.Log("Pink Wins by coins");
                     }
-                    else if(BlueCoins > PinkCoins){
+                    else if(GameManager.Instance.BlueCoins > GameManager.Instance.PinkCoins){
                         pinkWinner.enabled = false;
                         blueWinner.enabled = true;
+                        Debug.Log("Blue Wins by coins");
                     }
                     else{
                         pinkWinner.text = "DRAW";
                         pinkWinner.color = new Color(255f,255f,255f,1f);
+                        Debug.Log("Draw");
                     }
                 }
                 AudioSource endAudio = GetComponent<AudioSource>();
