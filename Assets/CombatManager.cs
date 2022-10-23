@@ -47,6 +47,8 @@ public class CombatManager : MonoBehaviour
     private int blueBattleUnitsIdx = 0,pinkBattleUnitsIdx = 0;
 
     public GameObject audioScript;
+    public GameObject combatPanel;
+    public GameObject battlePanel;
 
     public void Awake(){
         Instance = this;
@@ -54,6 +56,8 @@ public class CombatManager : MonoBehaviour
     }
 
     public void Combat(GameState prevState, Tile tile){
+        combatPanel.SetActive(true);
+        battlePanel.SetActive(false);
         audioScript.GetComponent<BackgroundMusicScript>().SwitchSongs();
         mapNumber = Random.Range(1,7);
         string bluePlayer = null,pinkPlayer = null;
@@ -217,14 +221,6 @@ public class CombatManager : MonoBehaviour
             panCamera(Map6.transform.position.x, Map6.transform.position.y);
         }
         
-        /*// THIS IS TEMPORARY
-        List<string> players = new List<string>{"pink", "blue"};
-        //var random = new Random();
-        int idx = Random.Range(0,2);
-        Debug.Log(idx);
-        string winner = players[idx];
-
-        //SwitchStates(winner);*/
     }
 
     public void panCamera(float x, float y){
@@ -233,6 +229,8 @@ public class CombatManager : MonoBehaviour
 
     public void SwitchStates(string winner)
     {
+        combatPanel.SetActive(false);
+        battlePanel.SetActive(true);
         audioScript.GetComponent<BackgroundMusicScript>().SwitchSongs();
         manageWinner(winner);
         panCamera(1f, -1.66f);
@@ -260,6 +258,8 @@ public class CombatManager : MonoBehaviour
         } else
         {
             GameManager.Instance.winnerByCombat = winner;
+            combatPanel.SetActive(false);
+            battlePanel.SetActive(false);
             GameManager.Instance.ChangeState(GameState.EndGame);
         }
     }
