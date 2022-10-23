@@ -7,8 +7,11 @@ public class BulletScript : MonoBehaviour
     private Rigidbody2D rb;
     Vector3 lastVelocity;
     public float bulletTime = 3f;
+    public AudioSource shotSound;
+    public AudioSource ricochetSound;
 
     void Awake(){
+        shotSound.Play();
         rb = GetComponent<Rigidbody2D>();
     }
 
@@ -31,6 +34,8 @@ public class BulletScript : MonoBehaviour
 
         Destroy(gameObject, bulletTime);
 
+        ricochetSound.time = 0.5f;
+        ricochetSound.Play();
         var speed = lastVelocity.magnitude;
         var direction = Vector3.Reflect(lastVelocity, collision.contacts[0].normal).normalized;
         transform.rotation = Quaternion.Euler(0f,0f,direction.z);
