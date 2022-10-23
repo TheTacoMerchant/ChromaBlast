@@ -2874,8 +2874,8 @@ MonoBehaviour:
   PinkScore: 0
   PinkCoins: 0
   victoryCanvas: {fileID: 878503021}
-  pinkWinner: {fileID: 0}
-  blueWinner: {fileID: 0}
+  pinkWinner: {fileID: 715301670}
+  blueWinner: {fileID: 750754806}
   endTransistion: {fileID: 8300000, guid: f8c7091fab79e46bcb5a1a878f33a7f0, type: 3}
 --- !u!82 &716810097
 AudioSource:
@@ -2990,7 +2990,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &750754805
 RectTransform:
   m_ObjectHideFlags: 0
