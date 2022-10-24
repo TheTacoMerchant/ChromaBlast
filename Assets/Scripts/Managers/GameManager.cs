@@ -23,7 +23,7 @@ public class GameManager : MonoBehaviour
 
     public AudioClip endTransistion;
 
-    public string winnerByCombat = null;
+    public string winnerByCombat = "null";
 
     public void Awake()
     {
@@ -68,8 +68,9 @@ public class GameManager : MonoBehaviour
                 stopping.EndSongs();
                 victoryCanvas.SetActive(true);
 
-                if(winnerByCombat != null)
+                if(winnerByCombat != "null")
                 {
+                    Debug.Log("Winner: " + winnerByCombat);
                     if(winnerByCombat == "blue")
                     {
                         pinkWinner.enabled = false;
@@ -78,6 +79,7 @@ public class GameManager : MonoBehaviour
                     {
                         pinkWinner.enabled = true;
                         blueWinner.enabled = false;
+                        Debug.Log("Wrong one");
                     }
                 }
                 else if(GameManager.Instance.PinkScore > GameManager.Instance.BlueScore){
