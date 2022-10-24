@@ -2955,7 +2955,7 @@ MonoBehaviour:
   pinkWinner: {fileID: 715301670}
   blueWinner: {fileID: 750754806}
   endTransistion: {fileID: 8300000, guid: f8c7091fab79e46bcb5a1a878f33a7f0, type: 3}
-  winnerByCombat: 
+  winnerByCombat: null
 --- !u!82 &716810097
 AudioSource:
   m_ObjectHideFlags: 0
@@ -4505,7 +4505,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 663, y: -310.00003}
+  m_AnchoredPosition: {x: 663, y: -310}
   m_SizeDelta: {x: -18.16, y: 37.92}
   m_Pivot: {x: 0, y: 1}
 --- !u!114 &1226570652
